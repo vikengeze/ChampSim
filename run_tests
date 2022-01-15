@@ -1,0 +1,8 @@
+./run_champsim.sh sp-simple-bimodal-no-no-no-no-lru-1core 1 10 srv_12 simple
+
+./run_champsim.sh from_file_sp-file-bimodal-no-no-no-no-lru-1core 1 10 srv_12 file
+
+from_file_sp-file-bimodal-no-no-no-no-lru-1core  
+no-tes-bimodal-no-no-no-trace-lru-1core  
+sp-simple-bimodal-no-no-no-no-lru-1core  
+trace-stlb_tracer-bimodal-no-no-no-no-lru-1core
