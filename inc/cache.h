@@ -8,7 +8,7 @@
 // PAGE
 extern uint32_t PAGE_TABLE_LATENCY, SWAP_LATENCY;
 
-#define P2TLB 1
+#define P2TLB 0 //P2TLB==1 --> Τα prefetches μπαινουν κατευθειαν στην STLB(no prefetch buffer)
 
 // Free Prefetching
 

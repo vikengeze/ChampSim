@@ -10,7 +10,7 @@ Off-chip DRAM Size: 4096 MB Channels: 1 Width: 64-bit Data Rate: 3200 MT/s
 
 CPU 0 runs /home/sonqo/Desktop/Διπλωματικη/paper-47-AE/traces/srv_12.champsimtrace.xz
 CPU 0 Bimodal branch predictor
-CPU 0 STLB from_file prefetcher(simple)
+CPU 0 STLB from_file prefetcher using sp trace
 
 Warmup complete CPU 0 instructions: 1000002 cycles: 504853 (Simulation time: 0 hr 0 min 2 sec) 
 
@@ -62,7 +62,7 @@ STLB LOAD      ACCESS:     115086  HIT:      93683  MISS:      21403
 STLB RFO       ACCESS:       6461  HIT:       5173  MISS:       1288
 STLB PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
 STLB WRITEBACK ACCESS:          0  HIT:          0  MISS:          0
-STLB PREFETCH  REQUESTED:      15031  ISSUED:       4450  USEFUL:          0  USELESS:          0
+STLB PREFETCH  REQUESTED:      15035  ISSUED:       4452  USEFUL:          0  USELESS:          0
 STLB AVERAGE MISS LATENCY: 117.894 cycles
 LLC TOTAL     ACCESS:     231226  HIT:     205083  MISS:      26143
 LLC LOAD      ACCESS:     184167  HIT:     168389  MISS:      15778

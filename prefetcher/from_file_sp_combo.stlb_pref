@@ -16,12 +16,12 @@ ifstream myfile;
 
 void CACHE::stlb_prefetcher_initialize() 
 {
-    cout << "CPU " << cpu << " STLB from_file prefetcher(simple)" << endl;
+    cout << "CPU " << cpu << " STLB from_file prefetcher using sp trace" << endl;
 
     uint64_t instr_id, addr, ip;
     string to_ken, data = "";
     vector<string> tokens; 
-    myfile.open("test.txt");
+    myfile.open("test2.txt");
 
     if(!myfile){
         cerr << "error with the test boi";

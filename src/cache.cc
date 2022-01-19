@@ -957,7 +957,7 @@ void CACHE::handle_fill()
 									}
 
 									int fctb_found_pos = -10;
-									if(iflag == 1){
+									if(iflag == 0){
 										refresh_fctb(current_core_cycle[read_cpu]);
 										fctb_found_pos = search_fctb(RQ.entry[index].address);
 										answer = check_hit_stlb_pq(RQ.entry[index].address);
@@ -969,31 +969,25 @@ void CACHE::handle_fill()
 
 									pair<uint64_t, uint64_t> v2p;
 									if(answer.first == -1){
-										if(iflag){
-											if(fctb_found_pos == -10){
-												v2p = va_to_pa(read_cpu, RQ.entry[index].instr_id, RQ.entry[index].full_addr, RQ.entry[index].address, RQ.entry[index].ip, RQ.entry[index].type, iflag, 0);
-												pa = v2p.first;
-												int victim_entry = fctb_replacement_policy();
-												fctb[victim_entry][0] = current_vpn;
-												fctb[victim_entry][1] = (RQ.entry[index].full_addr & 0x7000)/4096;
-												fctb[victim_entry][2] = current_core_cycle[read_cpu];
-												fctb[victim_entry][3] = v2p.second;
 
-											}
-											else{
-												pa = va_to_pa_prefetch(read_cpu, RQ.entry[index].full_addr, RQ.entry[index].address);
-												if(pa == 0){ //πρακτικα not found
-													v2p = va_to_pa(read_cpu, RQ.entry[index].instr_id, RQ.entry[index].full_addr, RQ.entry[index].address, RQ.entry[index].ip, RQ.entry[index].type, iflag, 0);
-													pa = v2p.first;
-												}
-											}
+										if(fctb_found_pos == -10){
+											v2p = va_to_pa(read_cpu, RQ.entry[index].instr_id, RQ.entry[index].full_addr, RQ.entry[index].address, RQ.entry[index].ip, RQ.entry[index].type, iflag, 0);
+											pa = v2p.first;
+											int victim_entry = fctb_replacement_policy();
+											fctb[victim_entry][0] = current_vpn;
+											fctb[victim_entry][1] = (RQ.entry[index].full_addr & 0x7000)/4096;
+											fctb[victim_entry][2] = current_core_cycle[read_cpu];
+											fctb[victim_entry][3] = v2p.second;
 										}
 										else{
-											v2p = va_to_pa(read_cpu, RQ.entry[index].instr_id, RQ.entry[index].full_addr, RQ.entry[index].address, RQ.entry[index].ip, RQ.entry[index].type, iflag, 0);
-											pa  = v2p.first;
-											///add code 
+											pa = va_to_pa_prefetch(read_cpu, RQ.entry[index].full_addr, RQ.entry[index].address);
+											if(pa == 0){ //πρακτικα not found
+												v2p = va_to_pa(read_cpu, RQ.entry[index].instr_id, RQ.entry[index].full_addr, RQ.entry[index].address, RQ.entry[index].ip, RQ.entry[index].type, iflag, 0);
+												pa = v2p.first;
+											}
 										}
-										if (iflag == 1)
+
+										if (iflag == 0)
 											pf_misses_pq++;
 									}
 									else{
@@ -1885,7 +1879,6 @@ void CACHE::handle_fill()
 					block[set][way].cpu = cpu;
 					block[set][way].stalls = pf_packet.event_cycle + pf_packet.stall_cycles;
 				}
-				pf_issued++;
 
 				return 1;
 			}
@@ -1911,7 +1904,7 @@ void CACHE::handle_fill()
 
 	int CACHE::prefetch_line(uint64_t ip, uint64_t base_addr, uint64_t pf_addr, int pf_fill_level, uint32_t prefetch_metadata)
 	{
-		pf_requested++;
+		//pf_requested++;
 
 		if (PQ.occupancy < PQ.SIZE) {
 			if ((base_addr>>LOG2_PAGE_SIZE) == (pf_addr>>LOG2_PAGE_SIZE)) {

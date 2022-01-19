@@ -7,7 +7,7 @@ ofstream myfile;
 
 void CACHE::stlb_prefetcher_initialize() 
 {
-	cout << "CPU " << cpu << " STLB -- Sequential Prefetcher (SP)" << endl;
+	cout << "CPU " << cpu << " STLB -- Sequential Prefetcher (SP) with tracer combo" << endl;
 	myfile.open("test2.txt");
 }
 
