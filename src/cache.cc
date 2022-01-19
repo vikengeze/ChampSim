@@ -820,22 +820,6 @@ void CACHE::handle_fill()
 
 						if(current_core_cycle[read_cpu] < block[set][way].stalls)
 							add_stall_prefetch(block[set][way].stalls-current_core_cycle[read_cpu], read_cpu);
-						//no break starts here
-						int bits, rowhit=-1, victim, iflag = 0;
-						pair<int, int> answer = make_pair(-1,-1);
-
-						int * free_indexes;
-						free_indexes = sorted_free_distances();
-
-						if(unsigned(RQ.entry[index].instruction) != 0)
-							iflag=1;
-
-						if(iflag == 0){ //	Was iflag==1
-							free_indexes = sorted_free_distances();
-							stlb_prefetcher_operate(RQ.entry[index].address, RQ.entry[index].ip, 0, RQ.entry[index].type, answer.first, warmup_complete[cpu], free_indexes, RQ.entry[index].instr_id, 1);
-							stlb_prefetcher_cache_fill(RQ.entry[index].address, 0, 0, 0, 0);
-						}
-						//no break ends here
 					}
 					else if (cache_type == IS_L1I) {
 						if (PROCESSED.occupancy < PROCESSED.SIZE)
@@ -911,25 +895,6 @@ void CACHE::handle_fill()
 					// remove this entry from RQ
 					RQ.remove_queue(&RQ.entry[index]);
 					reads_available_this_cycle--;
-
-					//please_no_break.exe
-					/*if (cache_type == IS_STLB) {
-						uint64_t pa, current_vpn = RQ.entry[index].address;
-						int bits, rowhit=-1, victim, iflag = 0;
-						pair<int, int> answer = make_pair(-1,-1);
-
-						int * free_indexes;
-						free_indexes = sorted_free_distances();
-
-						if(unsigned(RQ.entry[index].instruction) != 0)
-							iflag=1;
-
-						if(iflag == 0){ //	Was iflag==1
-							free_indexes = sorted_free_distances();
-							stlb_prefetcher_operate(RQ.entry[index].address, RQ.entry[index].ip, 0, RQ.entry[index].type, answer.first, warmup_complete[cpu], free_indexes, RQ.entry[index].instr_id, 1);
-							stlb_prefetcher_cache_fill(RQ.entry[index].address, 0, 0, 0, 0);
-						}
-					}*/
 				}
 				else { // read miss
 
@@ -999,7 +964,7 @@ void CACHE::handle_fill()
 									}
 									else{
 										answer = make_pair(-1,-1);
-										//swapped instructons for data
+										//make data work like instruction
 									}
 
 									pair<uint64_t, uint64_t> v2p;
