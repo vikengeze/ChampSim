@@ -21,10 +21,11 @@ free_indexes = sorted_free_distances();
 stlb_prefetcher_operate(RQ.entry[index].address, RQ.entry[index].ip, 0, RQ.entry[index].type, answer.first, warmup_complete[cpu], free_indexes, RQ.entry[index].instr_id, iflag);
 stlb_prefetcher_cache_fill(RQ.entry[index].address, 0, 0, 0, 0);
 
-Καλησπερα σας. Οσον αφορα το tracing, νομιζω πως καταφερα να φτιαξω εν τελει τα σωστα load traces, με ολα τα stlb accesses, και hit/miss tracking, και τωρα προσπαθω να ελεγξω αν τα trace files που προκυπτουν ειναι σωστα. Επισης, για το P2TLB ειχατε δικιο και βρηκα μεσα στο paper πως πρακτικα προσπερνουσε τον prefetch buffer και εβαζε τα prefetches κατευθειαν μεσα στην STLB, οποτε το απενεργοποιησα. 
-Το προβλημα που δημιουργηθηκε ομως, ειναι πως το Morrigan εχει useful/useless prefetch tracking μονο για instructions. Συγκεκριμενα, απ'οσο εχω καταλαβει, οι counters μεταβαλλονται κανονικα εντος των handle_fill() και handle_writeback() που χρησιμοποιουνται για τις απλες caches, και εφοσον το Morrigan αντιμετωπιζει τα prefetches στην STLB με διαφορετικο τροπο, εχει προστεθει ενα κομματι κωδικα στην συγκεκριμενη συναρτηση που κανει handle τα instructions. Προς το παρον, μπορω να θεσω την P2TLB=1 ωστε να μπορεσω να ελεγξω εαν τα trace files μου ειναι σωστα.
+Ναι βεβαιως, οσον αφορα το tracing, νομιζω πως καταφερα να φτιαξω τα load traces, με ολα τα stlb accesses, και hit/miss tracking, και τωρα προσπαθω να ελεγξω αν τα trace files που προκυπτουν ειναι σωστα. Επισης, για το P2TLB ειχατε δικιο και βρηκα μεσα στο paper πως πρακτικα προσπερνουσε τον prefetch buffer και εβαζε τα prefetches κατευθειαν μεσα στην STLB, οποτε το απενεργοποιησα. 
+Το προβλημα που δημιουργηθηκε ομως, ειναι πως το Morrigan εχει useful/useless prefetch tracking μονο για instructions. Συγκεκριμενα, απ'οσο εχω καταλαβει, οι counters μεταβαλλονται κανονικα εντος των handle_fill() και handle_writeback() που χρησιμοποιουνται για τις απλες caches, και εφοσον το Morrigan αντιμετωπιζει τα prefetches στην STLB με διαφορετικο τροπο, εχει προστεθει ενα κομματι κωδικα στην συγκεκριμενη συναρτηση που κανει handle τα instructions. Προς το παρον εχω θεσει την P2TLB=1 και ελεγχω αν τα trace files που εφτιαξα ειναι σωστα. Εφοσον ομως θα χρησιμοποιηθει ο prefetch buffer για το νευρωνικο, ηθελα τη γνωμη σας για το εαν αξιζει να προσπαθησω να προσθεσω με καποιον τροπο counters για τα useful και useless prefetches και αν ναι ποιος θεωρειτε οτι ειναι ο βελτιστος τροπος.
 
 Για το tracking των useful/useless prefetches, χρησιμοποιειται η μεταβλητη block[set][way].prefetch γινεται 1 μεσα στην cache_fill και μεσα στην prefetch_code_line. Το μορριγκαν την εβγαζε πενα απο το prefetch_code_line, οπου το .prefetch γινεται 1.
 Η cache fill καλειται απο τις:
 handle_fill()
 handle_writeback()
+
