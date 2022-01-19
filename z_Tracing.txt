@@ -1,0 +1,40 @@
+Arxika exoume LOAD TRACES kai EXECUTION TRACES
+Ta LOAD TRACES (pou prepei na ftiaxtoun) tha xrisimopoihthough gia to training kai tha einai mia seira apo TLB accesses
+O kwdikas mou (To ML TLB PREFETCHER mou diladi) prepei na pairnei ena TRAINING LOAD TRACE gia na ekpaideutei kai meta tha prepei na borei na ftiaxei ena output file to opoio exei ena prefetch/line.
+
+To LOAD TRACE tha einai tis morfis:
+3659 cycle1 A ip1 1		opou:
+3659 	= Instrucion ID
+cycle1	= Cycle count
+A 		= Load Address
+ip1		= Instruction Pointer gia to LOAD
+1/0		= TLB hit/miss
+
+Tha prepei na vgazei ena output tis morfis:
+3659 A+x, x arithmos kai praktika auto einai to prefetch pou tha kanw egw
+
+Το λοιπον, παμε λιγο τι πρεπει να κανουμε:
+
+Πρεπει να φτιαξουμε τα  LOAD TRACES στην παραπανω μορφη(αλλα προφανεστατα θελουμε να αφορουν την TLB)
+Μας βοηθαει το αρχειο trace.llc_pref εντος του Quangmire, το οποιο(μαλλον) φτιαχνει τα LOAD TRACES για την llc. 
+
+Γενικα αυτο που θελω να κανω εν τελει ειναι να φτιαξω ολα τα load traces, και επειτα να εχω το ML TLB prefetcher μου, το οποιο θα διαβαζει ενα load trace, θα βγαζει ενα καινουργιο αρχειο το οποιο θα περιγραφει τα prefetches ανα instruction id, και το αρχειο αυτο θα λειτουργει ως ο prefetcher μου. Προς το παρον, θελω να φτιαξω τα load traces. Αυτη τη στιγμη θελω να τσεκαρω οτι ειναι σωστα, οποτε θα φτιαξω ενα "prefetcher", ο οποιος θα διαβαζει απο το αρχειο test.txt που εφτιαξα ως load trace. 
+
+Για να τρεξω το αρχικο μου τεστ, εχω 3 binaries:
+trace-stlb_tracer-bimodal-no-no-no-no-lru-1core
+sp-simple-bimodal-no-no-no-no-lru-1core
+from_file_sp-file-bimodal-no-no-no-no-lru-1core
+
+Αρχικα, τρεχω πολυ ευκολα τον sp-simple=simple sequential prefetcher
+Μετα τρεχω τον trace-stlb_tracer, που φτιαχνει το test.txt και χρησιμευει ως load trace
+Τελος, τρεχω τον from_file_sp, και τσεκαρω αν τα αποτελεσματα ειναι ιδια. Για τα αποτ, βαζω και option για να διαφοροποιηθουν τα αρχεια. Με τη σειρα οι εντολες:
+
+./run_champsim.sh sp-simple-bimodal-no-no-no-no-lru-1core 1 10 srv_12 simple
+./run_champsim.sh trace-stlb_tracer-bimodal-no-no-no-no-lru-1core 1 10 srv_12 trace
+./run_champsim.sh from_file_sp-file-bimodal-no-no-no-no-lru-1core 1 10 srv_12 file
+
+Αν χρειαστει να ξανακανω κατι build:
+
+./build_champsim.sh bimodal no no no no lru 1 trace stlb_tracer
+./build_champsim.sh bimodal no no no no lru 1 sp simple
+./build_champsim.sh bimodal no no no no lru 1 from_file_sp file

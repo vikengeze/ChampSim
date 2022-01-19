@@ -12,65 +12,65 @@ CPU 0 runs /home/sonqo/Desktop/Διπλωματικη/paper-47-AE/traces/srv_12.
 CPU 0 Bimodal branch predictor
 CPU 0 STLB -- Sequential Prefetcher (SP) with tracer combo
 
-Warmup complete CPU 0 instructions: 1000002 cycles: 504854 (Simulation time: 0 hr 0 min 2 sec) 
+Warmup complete CPU 0 instructions: 1000002 cycles: 504852 (Simulation time: 0 hr 0 min 2 sec) 
 
-Heartbeat CPU 0 instructions: 10000002 cycles: 19127015 heartbeat IPC: 0.522821 cumulative IPC: 0.483295 (Simulation time: 0 hr 0 min 24 sec) 
-Finished CPU 0 instructions: 10000001 cycles: 20844922 cumulative IPC: 0.479733 (Simulation time: 0 hr 0 min 27 sec) 
+Heartbeat CPU 0 instructions: 10000002 cycles: 19033437 heartbeat IPC: 0.525391 cumulative IPC: 0.485736 (Simulation time: 0 hr 0 min 25 sec) 
+Finished CPU 0 instructions: 10000001 cycles: 20748805 cumulative IPC: 0.481956 (Simulation time: 0 hr 0 min 28 sec) 
 
 ChampSim completed all CPUs
 
 Region of Interest Statistics
 
-CPU 0 cumulative IPC: 0.479733 instructions: 10000001 cycles: 20844922
-L1D TOTAL     ACCESS:    2645949  HIT:    2496029  MISS:     149920
-L1D LOAD      ACCESS:    1656183  HIT:    1534916  MISS:     121267
-L1D RFO       ACCESS:     989766  HIT:     961113  MISS:      28653
+CPU 0 cumulative IPC: 0.481956 instructions: 10000001 cycles: 20748805
+L1D TOTAL     ACCESS:    2645973  HIT:    2495869  MISS:     150104
+L1D LOAD      ACCESS:    1656223  HIT:    1534821  MISS:     121402
+L1D RFO       ACCESS:     989750  HIT:     961048  MISS:      28702
 L1D PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
 L1D WRITEBACK ACCESS:          0  HIT:          0  MISS:          0
 L1D PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
-L1D AVERAGE MISS LATENCY: 45.1471 cycles
-L1I TOTAL     ACCESS:    2580321  HIT:    2316986  MISS:     263335
-L1I LOAD      ACCESS:    2580321  HIT:    2316986  MISS:     263335
+L1D AVERAGE MISS LATENCY: 44.8003 cycles
+L1I TOTAL     ACCESS:    2580319  HIT:    2316984  MISS:     263335
+L1I LOAD      ACCESS:    2580319  HIT:    2316984  MISS:     263335
 L1I RFO       ACCESS:          0  HIT:          0  MISS:          0
 L1I PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
 L1I WRITEBACK ACCESS:          0  HIT:          0  MISS:          0
 L1I PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
-L1I AVERAGE MISS LATENCY: 27.303 cycles
-L2C TOTAL     ACCESS:     466725  HIT:     263792  MISS:     202933
-L2C LOAD      ACCESS:     384566  HIT:     200398  MISS:     184168
-L2C RFO       ACCESS:      28651  HIT:       9984  MISS:      18667
+L1I AVERAGE MISS LATENCY: 27.1319 cycles
+L2C TOTAL     ACCESS:     466986  HIT:     264120  MISS:     202866
+L2C LOAD      ACCESS:     384703  HIT:     200600  MISS:     184103
+L2C RFO       ACCESS:      28700  HIT:      10035  MISS:      18665
 L2C PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
-L2C WRITEBACK ACCESS:      53508  HIT:      53410  MISS:         98
+L2C WRITEBACK ACCESS:      53583  HIT:      53485  MISS:         98
 L2C PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
-L2C AVERAGE MISS LATENCY: 39.0602 cycles
-ITLB TOTAL     ACCESS:    2279701  HIT:    2251035  MISS:      28666
-ITLB LOAD      ACCESS:    2279701  HIT:    2251035  MISS:      28666
+L2C AVERAGE MISS LATENCY: 38.7936 cycles
+ITLB TOTAL     ACCESS:    2279714  HIT:    2251048  MISS:      28666
+ITLB LOAD      ACCESS:    2279714  HIT:    2251048  MISS:      28666
 ITLB RFO       ACCESS:          0  HIT:          0  MISS:          0
 ITLB PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
 ITLB WRITEBACK ACCESS:          0  HIT:          0  MISS:          0
 ITLB PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
-ITLB AVERAGE MISS LATENCY: 46.5529 cycles
-DTLB TOTAL     ACCESS:    2422445  HIT:    2329564  MISS:      92881
-DTLB LOAD      ACCESS:    1638534  HIT:    1552114  MISS:      86420
-DTLB RFO       ACCESS:     783911  HIT:     777450  MISS:       6461
+ITLB AVERAGE MISS LATENCY: 45.8179 cycles
+DTLB TOTAL     ACCESS:    2422455  HIT:    2329573  MISS:      92882
+DTLB LOAD      ACCESS:    1638527  HIT:    1552109  MISS:      86418
+DTLB RFO       ACCESS:     783928  HIT:     777464  MISS:       6464
 DTLB PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
 DTLB WRITEBACK ACCESS:          0  HIT:          0  MISS:          0
 DTLB PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
-DTLB AVERAGE MISS LATENCY: 29.8128 cycles
-STLB TOTAL     ACCESS:     121547  HIT:      98856  MISS:      22691
-STLB LOAD      ACCESS:     115086  HIT:      93683  MISS:      21403
-STLB RFO       ACCESS:       6461  HIT:       5173  MISS:       1288
+DTLB AVERAGE MISS LATENCY: 29.1034 cycles
+STLB TOTAL     ACCESS:     121548  HIT:      98857  MISS:      22691
+STLB LOAD      ACCESS:     115084  HIT:      93682  MISS:      21402
+STLB RFO       ACCESS:       6464  HIT:       5175  MISS:       1289
 STLB PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
 STLB WRITEBACK ACCESS:          0  HIT:          0  MISS:          0
-STLB PREFETCH  REQUESTED:      15035  ISSUED:       4452  USEFUL:          0  USELESS:          0
-STLB AVERAGE MISS LATENCY: 117.92 cycles
-LLC TOTAL     ACCESS:     231223  HIT:     205080  MISS:      26143
-LLC LOAD      ACCESS:     184168  HIT:     168390  MISS:      15778
-LLC RFO       ACCESS:      18667  HIT:       8311  MISS:      10356
+STLB PREFETCH  REQUESTED:     102684  ISSUED:      15557  USEFUL:          0  USELESS:          0
+STLB AVERAGE MISS LATENCY: 114.478 cycles
+LLC TOTAL     ACCESS:     231162  HIT:     205185  MISS:      25977
+LLC LOAD      ACCESS:     184103  HIT:     168491  MISS:      15612
+LLC RFO       ACCESS:      18665  HIT:       8312  MISS:      10353
 LLC PREFETCH  ACCESS:          0  HIT:          0  MISS:          0
-LLC WRITEBACK ACCESS:      28388  HIT:      28379  MISS:          9
+LLC WRITEBACK ACCESS:      28394  HIT:      28382  MISS:         12
 LLC PREFETCH  REQUESTED:          0  ISSUED:          0  USEFUL:          0  USELESS:          0
-LLC AVERAGE MISS LATENCY: 128.915 cycles
+LLC AVERAGE MISS LATENCY: 128.956 cycles
 Major fault: 0 Minor fault: 3393
 
 *******************************************
@@ -83,19 +83,19 @@ I-STLB MISSES: 9395
 -------------------------------------------
 
 -------------------------------------------
-PQ hits: 1292
-PQ misses: 12004
+PQ hits: 1641
+PQ misses: 11655
 -------------------------------------------
 
 DRAM Statistics
  CHANNEL 0
- RQ ROW_BUFFER_HIT:      10786  ROW_BUFFER_MISS:      15348
- DBUS_CONGESTED:       3660
- WQ ROW_BUFFER_HIT:        591  ROW_BUFFER_MISS:       2323  FULL:          0
+ RQ ROW_BUFFER_HIT:      10733  ROW_BUFFER_MISS:      15232
+ DBUS_CONGESTED:       3638
+ WQ ROW_BUFFER_HIT:        602  ROW_BUFFER_MISS:       2325  FULL:          0
 
  AVG_CONGESTED_CYCLE: 6
 
-CPU 0 Branch Prediction Accuracy: 92.8314% MPKI: 13.7436 Average ROB Occupancy at Mispredict: 7.46275
+CPU 0 Branch Prediction Accuracy: 92.8314% MPKI: 13.7436 Average ROB Occupancy at Mispredict: 7.46009
 
 Branch types
 NOT_BRANCH: 9972856 99.7286%

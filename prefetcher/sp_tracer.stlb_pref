@@ -13,14 +13,14 @@ void CACHE::stlb_prefetcher_initialize()
 
 void CACHE::stlb_prefetcher_operate(uint64_t addr, uint64_t ip, uint8_t cache_hit, uint8_t type, int answer, int warmup, int * free_indexes, uint64_t instr_id, int iflag)
 {
+	assert(type != PREFETCH); // The instr_id is currently set to 0 for all prefetches
 	if (instr_id == 0) return;
-
 	uint64_t current_vpn, pf_addr;
-	
 	current_vpn = addr;
-
 	pf_addr = current_vpn + 1;
-	myfile << instr_id << ", " << hex << addr << ", " << ip <<  dec << endl;	//tracer part
+
+	myfile << instr_id << ", " << hex << addr << ", " << ip <<  dec << ", " << iflag << endl;
+
 	prefetch_page(ip, addr, pf_addr, FILL_L2, 0, 0, 0, 0, instr_id, type, iflag, 0, 0, 0);
 }
 

@@ -3,15 +3,19 @@
 
 ofstream myfile;
 
+#define DEBUG 0
+
 void CACHE::stlb_prefetcher_initialize() 
 {
+	cout << "CPU " << cpu << " STLB -- Trace creator prefetcher" << endl;
 	myfile.open("test.txt");
 }
 
 void CACHE::stlb_prefetcher_operate(uint64_t addr, uint64_t ip, uint8_t cache_hit, uint8_t type, int answer, int warmup, int * free_indexes, uint64_t instr_id, int iflag){
 	assert(type != PREFETCH); // The instr_id is currently set to 0 for all prefetches
 	if (instr_id == 0) return;
-	myfile << instr_id << ", " << hex << addr << ", " << ip <<  dec << endl;
+	//iflag is not really iflag its hit/miss flag
+	myfile << dec << instr_id << ", " << hex << addr << ", " << ip <<  ", " << iflag << endl;
 }
 
 void CACHE::stlb_prefetcher_cache_fill(uint64_t addr, uint32_t set, uint32_t way, uint8_t prefetch, uint64_t evicted_addr)
