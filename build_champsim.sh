@@ -127,7 +127,6 @@ echo "Binary: bin/${BINARY_NAME}"
 echo ""
 mv bin/champsim bin/${BINARY_NAME}
 
-mkdir -p Statistics/${STLB_PREFETCHER}${BUILD_NAME}/wd_dir
 
 # Restore to the default configuration
 sed -i.bak 's/\<NUM_CPUS '${NUM_CORE}'\>/NUM_CPUS 1/g' inc/champsim.h
