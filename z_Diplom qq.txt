@@ -11,15 +11,10 @@ To Do:
 (Unique Instr Id, Cycle Count, Load Address, Instruction Pointer of the Load, LLC hit/miss)
 
 Προμπλεμζ:
-1) Check P2TLB, αντιστοιχο με το παρακατω
-2) Τα issued prefetches ειναι 0. Αλλαγη στο cache.cc γραμμη 1886. fixed
-3) Φτιαξε την cache.cc ποτε γινεται το prefetch.Αυτη τη στιγμη ειναι μονο για miss:
-Πρωτο βημα φτιαχνω να δουλευει για data(//)
-Δευτερο βημα προσπαθω να προσθεσω tracing και στα hits μου
-
-free_indexes = sorted_free_distances();
-stlb_prefetcher_operate(RQ.entry[index].address, RQ.entry[index].ip, 0, RQ.entry[index].type, answer.first, warmup_complete[cpu], free_indexes, RQ.entry[index].instr_id, iflag);
-stlb_prefetcher_cache_fill(RQ.entry[index].address, 0, 0, 0, 0);
+1) Αυτο με τα useful/useless απο skype
+2) Εαν υπαρχει τροπος να ειμαι 100% σιγουρος οτι τα hits που κανω record ειναι σωστα
+3) Ποια traces να χρησιμοποιησω, θεωρω οχι του Morrigan επειδη ειναι για industrial size applications
+4) Για να φτιαξω λιγο μερικα scripts και να αλλαξω το πως λειτουργουν οσα εχω κανει, πως ακριβως θελουμε να διαβαζει και να τρεχει το νευρωνικο
 
 Καλησπερα σας. Οσον αφορα το tracing, νομιζω πως καταφερα να φτιαξω εν τελει τα σωστα load traces, με ολα τα stlb accesses, και hit/miss tracking, και τωρα προσπαθω να ελεγξω αν τα trace files που προκυπτουν ειναι σωστα. Επισης, για το P2TLB ειχατε δικιο και βρηκα μεσα στο paper πως πρακτικα προσπερνουσε τον prefetch buffer και εβαζε τα prefetches κατευθειαν μεσα στην STLB, οποτε το απενεργοποιησα. 
 Το προβλημα που δημιουργηθηκε ομως, ειναι πως το Morrigan εχει useful/useless prefetch tracking μονο για instructions. Συγκεκριμενα, απ'οσο εχω καταλαβει, οι counters μεταβαλλονται κανονικα εντος των handle_fill() και handle_writeback() που χρησιμοποιουνται για τις απλες caches, και εφοσον το Morrigan αντιμετωπιζει τα prefetches στην STLB με διαφορετικο τροπο, εχει προστεθει ενα κομματι κωδικα στην συγκεκριμενη συναρτηση που κανει handle τα instructions. Προς το παρον, μπορω να θεσω την P2TLB=1 ωστε να μπορεσω να ελεγξω εαν τα trace files μου ειναι σωστα.
