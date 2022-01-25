@@ -16,9 +16,6 @@ To Do:
 3) Ποια traces να χρησιμοποιησω, θεωρω οχι του Morrigan επειδη ειναι για industrial size applications
 4) Για να φτιαξω λιγο μερικα scripts και να αλλαξω το πως λειτουργουν οσα εχω κανει, πως ακριβως θελουμε να διαβαζει και να τρεχει το νευρωνικο
 
-Καλησπερα σας. Οσον αφορα το tracing, νομιζω πως καταφερα να φτιαξω εν τελει τα σωστα load traces, με ολα τα stlb accesses, και hit/miss tracking, και τωρα προσπαθω να ελεγξω αν τα trace files που προκυπτουν ειναι σωστα. Επισης, για το P2TLB ειχατε δικιο και βρηκα μεσα στο paper πως πρακτικα προσπερνουσε τον prefetch buffer και εβαζε τα prefetches κατευθειαν μεσα στην STLB, οποτε το απενεργοποιησα. 
-Το προβλημα που δημιουργηθηκε ομως, ειναι πως το Morrigan εχει useful/useless prefetch tracking μονο για instructions. Συγκεκριμενα, απ'οσο εχω καταλαβει, οι counters μεταβαλλονται κανονικα εντος των handle_fill() και handle_writeback() που χρησιμοποιουνται για τις απλες caches, και εφοσον το Morrigan αντιμετωπιζει τα prefetches στην STLB με διαφορετικο τροπο, εχει προστεθει ενα κομματι κωδικα στην συγκεκριμενη συναρτηση που κανει handle τα instructions. Προς το παρον, μπορω να θεσω την P2TLB=1 ωστε να μπορεσω να ελεγξω εαν τα trace files μου ειναι σωστα.
-
 Για το tracking των useful/useless prefetches, χρησιμοποιειται η μεταβλητη block[set][way].prefetch γινεται 1 μεσα στην cache_fill και μεσα στην prefetch_code_line. Το μορριγκαν την εβγαζε πενα απο το prefetch_code_line, οπου το .prefetch γινεται 1.
 Η cache fill καλειται απο τις:
 handle_fill()
