@@ -400,8 +400,8 @@ pair<uint64_t,uint64_t> va_to_pa(uint32_t cpu, uint64_t instr_id, uint64_t va, u
 			if (pr == page_table.end())
 				assert(0);
 #endif
-			DP ( if (warmup_complete[cpu]) {
-					cout << "[SWAP] update page table NRU_vpage: " << hex << pr->first << " new_vpage: " << vpage << " ppage: " << pr->second << dec << endl; });
+			//DP ( if (warmup_complete[cpu]) {
+			//		cout << "[SWAP] update page table NRU_vpage: " << hex << pr->first << " new_vpage: " << vpage << " ppage: " << pr->second << dec << endl; });
 
 			uint64_t mapped_ppage = pr->second;
 			page_table.erase(pr);
@@ -414,9 +414,9 @@ pair<uint64_t,uint64_t> va_to_pa(uint32_t cpu, uint64_t instr_id, uint64_t va, u
 #endif
 			ppage_check->second = vpage;
 
-			DP ( if (warmup_complete[cpu]) {
-					cout << "[SWAP] update inverse table NRU_vpage: " << hex << NRU_vpage << " new_vpage: ";
-					cout << ppage_check->second << " ppage: " << ppage_check->first << dec << endl; });
+			//DP ( if (warmup_complete[cpu]) {
+			//		cout << "[SWAP] update inverse table NRU_vpage: " << hex << NRU_vpage << " new_vpage: ";
+			//		cout << ppage_check->second << " ppage: " << ppage_check->first << dec << endl; });
 
 			page_queue.pop();
 			page_queue.push(vpage);
@@ -445,8 +445,8 @@ pair<uint64_t,uint64_t> va_to_pa(uint32_t cpu, uint64_t instr_id, uint64_t va, u
 			while (1) { 
 				ppage_check = inverse_table.find(random_ppage); 
 				if (ppage_check != inverse_table.end()) { 
-					DP ( if (warmup_complete[cpu]) {
-							cout << "vpage: " << hex << ppage_check->first << " is already mapped to ppage: " << random_ppage << dec << endl; }); 
+					//DP ( if (warmup_complete[cpu]) {
+					//		cout << "vpage: " << hex << ppage_check->first << " is already mapped to ppage: " << random_ppage << dec << endl; }); 
 
 					if (num_adjacent_page > 0)
 						fragmented = 1;
@@ -467,8 +467,8 @@ pair<uint64_t,uint64_t> va_to_pa(uint32_t cpu, uint64_t instr_id, uint64_t va, u
 
 			if (fragmented) {
 				num_adjacent_page = 1 << (rand() % 10);
-				DP ( if (warmup_complete[cpu]) {
-						cout << "Recalculate num_adjacent_page: " << num_adjacent_page << endl; });
+				//DP ( if (warmup_complete[cpu]) {
+				//		cout << "Recalculate num_adjacent_page: " << num_adjacent_page << endl; });
 			}
 		}
 
@@ -491,9 +491,9 @@ pair<uint64_t,uint64_t> va_to_pa(uint32_t cpu, uint64_t instr_id, uint64_t va, u
 	uint64_t pa = ppage << LOG2_PAGE_SIZE;
 	pa |= voffset;
 
-	DP ( if (warmup_complete[cpu]) {
-			cout << "[PAGE_TABLE] instr_id: " << instr_id << " vpage: " << hex << vpage;
-			cout << " => ppage: " << (pa >> LOG2_PAGE_SIZE) << " vadress: " << unique_va << " paddress: " << pa << dec << endl; });
+	//DP ( if (warmup_complete[cpu]) {
+	//		cout << "[PAGE_TABLE] instr_id: " << instr_id << " vpage: " << hex << vpage;
+	//		cout << " => ppage: " << (pa >> LOG2_PAGE_SIZE) << " vadress: " << unique_va << " paddress: " << pa << dec << endl; });
 
 	int mmu_hit[3] = {0,0,0};
 	uint64_t compare_pml4, compare_pdp, compare_pd;
@@ -1791,10 +1791,10 @@ int main(int argc, char** argv)
 
 	//cout << endl << "ChampSim completed all CPUs" << endl;
 	if (NUM_CPUS > 1) {
-		cout << endl << "Total Simulation Statistics (not including warmup)" << endl;
+		//cout << endl << "Total Simulation Statistics (not including warmup)" << endl;
 		for (uint32_t i=0; i<NUM_CPUS; i++) {
-			cout << endl << "CPU " << i << " cumulative IPC: " << (float) (ooo_cpu[i].num_retired - ooo_cpu[i].begin_sim_instr) / (current_core_cycle[i] - ooo_cpu[i].begin_sim_cycle); 
-			cout << " instructions: " << ooo_cpu[i].num_retired - ooo_cpu[i].begin_sim_instr << " cycles: " << current_core_cycle[i] - ooo_cpu[i].begin_sim_cycle << endl;
+			//cout << endl << "CPU " << i << " cumulative IPC: " << (float) (ooo_cpu[i].num_retired - ooo_cpu[i].begin_sim_instr) / (current_core_cycle[i] - ooo_cpu[i].begin_sim_cycle); 
+			//cout << " instructions: " << ooo_cpu[i].num_retired - ooo_cpu[i].begin_sim_instr << " cycles: " << current_core_cycle[i] - ooo_cpu[i].begin_sim_cycle << endl;
 #ifndef CRC2_COMPILE
 			print_sim_stats(i, &ooo_cpu[i].L1D);
 			print_sim_stats(i, &ooo_cpu[i].L1I);

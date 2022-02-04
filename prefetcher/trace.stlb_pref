@@ -11,12 +11,12 @@ void CACHE::stlb_prefetcher_initialize()
 	//myfile.open("test11.txt");
 }
 
-void CACHE::stlb_prefetcher_operate(uint64_t addr, uint64_t ip, uint8_t cache_hit, uint8_t type, int answer, int warmup, int * free_indexes, uint64_t instr_id, int iflag){
+void CACHE::stlb_prefetcher_operate(uint64_t addr, uint64_t ip, uint8_t cache_hit, uint8_t type, int answer, int warmup, int * free_indexes, uint64_t instr_id, int iflag, uint64_t curr_cycle){
 	assert(type != PREFETCH); // The instr_id is currently set to 0 for all prefetches
 	if (instr_id == 0) return;
 	//iflag is not really iflag its hit/miss flag
 	//myfile << dec << instr_id << ", " << hex << addr << ", " << ip <<  ", " << iflag << endl;
-	cout << dec << instr_id << ", " << hex << addr << ", " << ip <<  ", " << iflag << endl;
+	cout << dec << instr_id << ", " << curr_cycle << ", " << hex << addr << ", " << ip <<  ", " << iflag << endl;
 }
 
 void CACHE::stlb_prefetcher_cache_fill(uint64_t addr, uint32_t set, uint32_t way, uint8_t prefetch, uint64_t evicted_addr)

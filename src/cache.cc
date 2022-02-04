@@ -832,7 +832,7 @@ void CACHE::handle_fill()
 
 						if(iflag == 0){ //	Was iflag==1
 							free_indexes = sorted_free_distances();
-							stlb_prefetcher_operate(RQ.entry[index].address, RQ.entry[index].ip, 0, RQ.entry[index].type, answer.first, warmup_complete[cpu], free_indexes, RQ.entry[index].instr_id, 1);
+							stlb_prefetcher_operate(RQ.entry[index].address, RQ.entry[index].ip, 0, RQ.entry[index].type, answer.first, warmup_complete[cpu], free_indexes, RQ.entry[index].instr_id, 1, current_core_cycle[read_cpu]);
 							stlb_prefetcher_cache_fill(RQ.entry[index].address, 0, 0, 0, 0);
 						}
 						//no break ends here
@@ -1071,7 +1071,7 @@ void CACHE::handle_fill()
 									return_data(&RQ.entry[index]);
 									if(iflag == 0){ //	Was iflag==1
 										free_indexes = sorted_free_distances();
-										stlb_prefetcher_operate(RQ.entry[index].address, RQ.entry[index].ip, 0, RQ.entry[index].type, answer.first, warmup_complete[cpu], free_indexes, RQ.entry[index].instr_id, iflag);
+										stlb_prefetcher_operate(RQ.entry[index].address, RQ.entry[index].ip, 0, RQ.entry[index].type, answer.first, warmup_complete[cpu], free_indexes, RQ.entry[index].instr_id, iflag, current_core_cycle[read_cpu]);
 										stlb_prefetcher_cache_fill(RQ.entry[index].address, 0, 0, 0, 0);
 									}
 								}

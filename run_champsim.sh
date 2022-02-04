@@ -1,5 +1,5 @@
 #!/bin/bash
-TRACE_DIR='/home/sonqo/Desktop/Διπλωματικη/paper-47-AE/traces'
+TRACE_DIR='../traces'
 
 binary=${1}
 binary=${1}

@@ -382,7 +382,7 @@ class CACHE : public MEMORY {
 		     l1d_prefetcher_final_stats(),
 		     l2c_prefetcher_final_stats(),
 		     llc_prefetcher_final_stats(),
-		     stlb_prefetcher_operate(uint64_t addr, uint64_t ip, uint8_t cache_hit, uint8_t type, int answer, int warmup, int * free_indexes, uint64_t instr_id, int iflag),
+		     stlb_prefetcher_operate(uint64_t addr, uint64_t ip, uint8_t cache_hit, uint8_t type, int answer, int warmup, int * free_indexes, uint64_t instr_id, int iflag, uint64_t curr_cycle),
 		     stlb_prefetcher_final_stats(uint64_t prefetches, uint64_t hits, uint64_t misses, uint64_t swap, uint64_t dupli, uint64_t free, uint64_t real, uint64_t *mmu_cache_demand_hits, uint64_t * mmu_cache_prefetch_hits, uint64_t * rfhits, uint64_t * free_hits, uint64_t mr[4][4], uint64_t stlb_misses[2]);
 
 		int  search_pml4(uint64_t address), search_pdp(uint64_t address), search_pd(uint64_t address);
